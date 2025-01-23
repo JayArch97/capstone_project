@@ -41,6 +41,10 @@ Containerize:
 
 docker build . 
 
+Run the image locally:
+
+docker run -d image 
+
 Authenticate:
 
 sudo gcloud auth configure-docker us-west2-docker.pkg.dev
