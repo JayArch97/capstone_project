@@ -3,26 +3,46 @@ Julio Acosta
 Diego Oliva 
 
 
-1.5 hour: Docker image is running locally and pushed to Artifact Registry. 
+Tutorial Guide on how to deploy a repo on multiple services and then push repo with changes back to Github
 
 STEPS: 
 
-Gh install and Git installation. 
+Install Dependencies: 
 
-Firstable, we installed gh using the following command (sudo snap install gh)
-And github using the following command sudo apt-get install git.
+sudo apt-get install git-all.
 
-Docker install 
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-In order to install Docker, we added the Docker’s official GPG key. 
-Sudo apt-get update
-Sudo apt-get install ca-certificates curl. 
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
 
 
-Dockerfile: 
 
-Docker Image creation command: 
-On this step, we created the image in order to run it locally using the command (sudo docker build -t staticwebapp .)
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+	Test:  sudo docker run hello-world // Run this command if you want to verify that it was installed correctly
+
+ 
+Download the repository: 
+
+git clone https://github.com/GNiruthian/Europe-Travel-Website-html-css-js
+
+
+Containerize:
+
+docker build . 
+
+Tage the image:
+
 
 
 Used the curl command to retrieve the what was in the container that was running locally
