@@ -41,8 +41,13 @@ Containerize:
 
 docker build . 
 
-Tage the image:
+Authenticate:
 
+sudo gcloud auth configure-docker us-west2-docker.pkg.dev
+
+Tag the image:
+
+docker tag Image-Id Region-of-Artifact us-west2-docker.pkg.dev (in this case the region is us-west2-docker.pkg.dev)/project-Id/Name-Of-Artifact-repo/Name-you-want-on-docker-file
 
 
 Used the curl command to retrieve the what was in the container that was running locally
