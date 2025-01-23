@@ -4,8 +4,6 @@ FROM nginx:alpine
 # Set a working  directory
 WORKDIR  /usr/share/nginx/html
 
-ENV HOST 0.0.0.0
-
 #Copy the files
 COPY . . 
 

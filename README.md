@@ -36,6 +36,23 @@ Download the repository:
 
 git clone https://github.com/GNiruthian/Europe-Travel-Website-html-css-js
 
+Create the dockerfile inside the repo: 
+
+# Use an Nginx base image
+FROM nginx:alpine
+
+# Set a working  directory
+WORKDIR  /usr/share/nginx/html
+
+#Copy the files
+COPY . .
+
+# Expose port 80
+EXPOSE 80
+
+
+CMD ["nginx" , "-g" , "daemon off;"]
+
 
 Containerize:
 
@@ -45,29 +62,18 @@ Run the image locally:
 
 docker run -d image 
 
+Used the curl command to retrieve the what was in the container that was running locally
+
+curl external ip address
+
 Authenticate:
 
 sudo gcloud auth configure-docker us-west2-docker.pkg.dev
 
 Tag the image:
 
-docker tag Image-Id Region-of-Artifact us-west2-docker.pkg.dev (in this case the region is us-west2-docker.pkg.dev)/project-Id/Name-Of-Artifact-repo/Name-you-want-on-docker-file
-
-
-Used the curl command to retrieve the what was in the container that was running locally
-
-sudo docker run -d -p8080:80 staticwebapp
-
-curl http://localhost:8080/
-
-
-sudo docker build -t us-west2-docker.pkg.dev/acostajulio-dev/capstone-project/test-repo/art-demo:v01 .
-
- => => naming to us-west2-docker.pkg.dev/acostajulio-dev/capstone-project/test-repo/art-demo:v01        0.0s
-
-
-We can see the repository named “capstone-project” in the Artifact Registry window in Google cloud. 
-In order to create the repository we used the console and type the commands: 
+We can see the repository named “capstone-project” in the Artifact Registry window in Google cloud.
+In order to create the repository we used the console and type the commands:
 
   gcloud artifacts repositories create REPOSITORY \
       --repository-format=docker \
@@ -78,18 +84,19 @@ In order to create the repository we used the console and type the commands:
       --async \
       --disable-vulnerability-scanning
 
+The repository capstone-project was created.
 
+docker tag Image-Id Region-of-Artifact us-west2-docker.pkg.dev (in this case the region is us-west2-docker.pkg.dev)/project-Id/Name-Of-Artifact-repo/Name-you-want-on-docker-file
 
-The repository capstone-project was created. 
+sudo docker push us-west2-docker.pkg.dev/acostajulio-dev/capstone-project/test-repo/art-demo:v01 .
 
+ => => naming to us-west2-docker.pkg.dev/acostajulio-dev/capstone-project/test-repo/art-demo:v01        0.0s
 
-Then using Cloud Run option, we can select the image to run the project in the cloud using the deploy container/service option:  
-
-The platform processes the image, so we can access the app. 
-
+Then we use the gui to click on the deployment options
 
 Once the image is uploaded successfully, it will show the URL, you will be able to visualize the webpage using the URL link. 
 
+GCE:
 
 This screenshot shows how the port 443(HTTPS) is closed, that’s the reason it’s not working with HTTPS, however, it works with HTTP. 
 
@@ -105,7 +112,7 @@ We can see the resources being used by the deployment.
 Regarding the deployment through App Engine, the information was entered to a yaml file, and it was documented to show html, text, images, javascript and css archives, so the webpage can be presented correctly. 
 
 
-The SSH does not detect the browser, however, it provides the link, so we can access the website manually.
+The cli does not detect the browser, however, it provides the link, so we can access the website manually.
 
 
 
